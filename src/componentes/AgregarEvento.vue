@@ -1,8 +1,5 @@
 <script setup lang="ts"></script>
 
 <template>
-  <button
-    class="border-2 border-black text-white bg-green-500 hover:bg-green-600 p-2">
-    Agregar
-  </button>
+  <button class="flex-1 text-white bg-green-500 hover:bg-green-600 p-2 rounded-b font-medium">Agregar</button>
 </template>
