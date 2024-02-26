@@ -1,9 +1,15 @@
 <script setup lang="ts">
+import { useFechaEstado } from '@/estados/useFechaEstado'
+
 import Calendario from '@/componentes/Calendario.vue'
+import SelectorFecha from '@/componentes/SelectorFecha.vue'
+
+const fecha = useFechaEstado()
 </script>
 
 <template>
-  <main class="px-10 pt-16">
-    <Calendario :ano="2023" :mes="1" />
+  <main class="flex flex-col space-y-8 px-10 pt-16">
+    <SelectorFecha />
+    <Calendario :ano="fecha.ano" :mes="fecha.mes" />
   </main>
 </template>

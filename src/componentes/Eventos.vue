@@ -1,16 +1,10 @@
 <script setup lang="ts">
-import Evento from '@/componentes/Evento.vue'
-
-const eventos = [
-  {
-    id: 1,
-    titulo: 'Montar a caballo'
-  }
-]
+interface Props {
+  fecha: string
+}
+const props = defineProps<Props>()
 </script>
 
 <template>
-  <ul>
-    <Evento v-for="evento in eventos" :id="evento.id" :titulo="evento.titulo" />
-  </ul>
+  <p class="mx-2">No hay eventos</p>
 </template>
