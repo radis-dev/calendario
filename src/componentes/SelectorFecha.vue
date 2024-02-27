@@ -8,7 +8,7 @@ const { ano, mes } = storeToRefs(fecha)
 
 <template>
   <form class="flex flex-row justify-center space-x-4">
-    <input class="text-center border border-black/10 rounded bg-gray-50 p-2" type="number" v-model="ano" />
-    <input class="text-center border border-black/10 rounded bg-gray-50 p-2" type="number" v-model="mes" />
+    <input class="border border-black/10 rounded bg-gray-50 p-2 text-center w-32" type="number" v-model="ano" />
+    <input class="border border-black/10 rounded bg-gray-50 p-2 text-center w-32" type="number" v-model="mes" min="1" max="12" />
   </form>
 </template>
