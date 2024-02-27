@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  id: number
+  id: string
 }
 
 const props = defineProps<Props>()

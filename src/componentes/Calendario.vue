@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import Celdas from '@/componentes/Celdas.vue'
+import Celdas from '@/componentes/celdas/Celdas.vue'
 import DiasSemana from '@/componentes/DiasSemana.vue'
 
 interface Props {

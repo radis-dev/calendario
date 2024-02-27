@@ -1,7 +1,14 @@
 {
   "eventos": [
-    { "id": 1, "titulo": "Montar a caballo", "fecha": "2024-2-1" },
-    { "id": 2, "titulo": "Ir al cine", "fecha": "2024-2-2" },
-    { "id": 3, "titulo": "Ir al cine", "fecha": "2024-3-4" }
+    {
+      "id": "16e0",
+      "titulo": "dasdas",
+      "fecha": "2024-2-1"
+    },
+    {
+      "id": "8d9c",
+      "titulo": "fdf",
+      "fecha": "2024-2-9"
+    }
   ]
 }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import ModificarEvento from '@/componentes/ModificarEvento.vue'
-import EliminarEvento from '@/componentes/EliminarEvento.vue'
+import ModificarEvento from '@/componentes/celdas/eventos/ModificarEvento.vue'
+import EliminarEvento from '@/componentes/celdas/eventos/EliminarEvento.vue'
 
 interface Props {
-  id: number
+  id: string
   titulo: string
 }
 

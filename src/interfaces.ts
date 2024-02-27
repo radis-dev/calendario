@@ -1,5 +1,5 @@
 interface IEvento {
-  id: number
+  id: string
   titulo: string
   fecha: string
 }

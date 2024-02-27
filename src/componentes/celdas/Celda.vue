@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import AgregarEvento from '@/componentes/AgregarEvento.vue'
-import Eventos from '@/componentes/Eventos.vue'
+import AgregarEvento from '@/componentes/celdas/eventos/AgregarEvento.vue'
+import Eventos from '@/componentes/celdas/eventos/Eventos.vue'
 
 interface Props {
   fecha: string
 }
-
 const props = defineProps<Props>()
 </script>
 
