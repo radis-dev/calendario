@@ -1,5 +1,5 @@
 export interface IEvento {
-  id: string
+  id?: string
   titulo: string
   fecha: string
 }

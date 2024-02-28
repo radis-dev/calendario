@@ -12,6 +12,14 @@ export const obtenerEventos = async (fecha: string): Promise<IEvento[]> => {
   const { data } = await instancia.get<IEvento[]>('/eventos', {
     params: { fecha: fecha }
   })
+  return data
+}
 
+export const eliminarEvento = async (id: string): Promise<void> => {
+  await instancia.delete(`/eventos/${id}`)
+}
+
+export const agregarEvento = async (evento: IEvento): Promise<IEvento> => {
+  const { data } = await instancia.post('/eventos', evento)
   return data
 }
