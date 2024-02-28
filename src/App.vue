@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { useFechaEstado } from '@/estados/useFechaEstado'
+import { ref } from 'vue'
 
-import Calendario from '@/componentes/Calendario.vue'
-import SelectorFecha from '@/componentes/SelectorFecha.vue'
+import Calendario from '@/components/Calendario.vue'
 
-const fecha = useFechaEstado()
+const ano = ref(2024)
+const mes = ref(2)
 </script>
 
 <template>
   <main class="flex flex-col space-y-8 px-10 pt-16">
-    <SelectorFecha />
-    <Calendario :ano="fecha.ano" :mes="fecha.mes" />
+    <form class="flex flex-row justify-center space-x-4">
+      <input class="border border-black/10 rounded bg-gray-50 p-2 text-center w-32" type="number" v-model="ano" />
+      <input class="border border-black/10 rounded bg-gray-50 p-2 text-center w-32" type="number" v-model="mes" min="1" max="12" />
+    </form>
+    <Calendario :ano="ano" :mes="mes" />
   </main>
 </template>

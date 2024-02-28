@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import Celdas from '@/componentes/celdas/Celdas.vue'
-import DiasSemana from '@/componentes/DiasSemana.vue'
+import Celdas from '@/components/celdas/Celdas.vue'
+import DiasSemana from '@/components/DiasSemana.vue'
 
 interface Props {
   ano: number

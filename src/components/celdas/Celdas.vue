@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Celda from '@/componentes/celdas/Celda.vue'
+import Celda from '@/components/celdas/Celda.vue'
 
 interface Props {
   calendario: string[][]
