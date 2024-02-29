@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 
-import type { IEvento } from '@/interfaces'
+import { useEventosStore } from '@/stores/eventos'
+import * as apiEventos from '@/api/eventos'
 
 interface Props {
   fecha: string
 }
 const props = defineProps<Props>()
+
+const store = useEventosStore()
 
 const estaAbierto = ref(false)
 const alternarMenu = () => {
@@ -17,15 +20,15 @@ const formulario = reactive({
   titulo: ''
 })
 
-const emitir = defineEmits(['agregarEvento'])
-
-const manejarAccion = () => {
-  const nuevoEvento: IEvento = {
+const manejarAccion = async () => {
+  const evento = await apiEventos.agregarEvento({
     titulo: formulario.titulo,
     fecha: props.fecha
-  }
-  emitir('agregarEvento', nuevoEvento)
+  })
 
+  store.agregarEvento(evento)
+
+  formulario.titulo = ''
   alternarMenu()
 }
 </script>

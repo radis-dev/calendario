@@ -1,24 +1,43 @@
 <script setup lang="ts">
-import type { IEvento } from '@/interfaces'
+import { computed, onBeforeUnmount, toRefs, watch } from 'vue'
 
-import EliminarEvento from '@/components/celdas/eventos/EliminarEvento.vue'
-import ModificarEvento from '@/components/celdas/eventos/ModificarEvento.vue'
+import { useEventosStore } from '@/stores/eventos'
+import * as apiEventos from '@/api/eventos'
+
+import Evento from '@/components/celdas/eventos/Evento.vue'
 
 interface Props {
-  eventos: IEvento[]
+  fecha: string
 }
 const props = defineProps<Props>()
+const { fecha } = toRefs(props)
 
-const emitir = defineEmits(['modificarEvento', 'eliminarEvento'])
+const store = useEventosStore()
+const eventos = computed(() => store.obtenerEventos(fecha.value))
+
+watch(
+  fecha,
+  async (nuevos, antiguos) => {
+    if (antiguos) {
+      store.eliminarEventos(antiguos)
+    }
+
+    const nuevosEventos = await apiEventos.obtenerEventos(nuevos)
+    if (nuevosEventos.length > 0) {
+      store.agregarEventos(nuevos, nuevosEventos)
+    }
+  },
+  {
+    immediate: true
+  }
+)
+
+onBeforeUnmount(() => {
+  store.eliminarEventos(fecha.value)
+})
 </script>
 
 <template>
-  <li v-if="props.eventos.length > 0" v-for="(evento, indice) in eventos" :key="indice" class="flex flex-col space-y-4 p-4 mx-2 bg-white border border-black/10 rounded">
-    <p>{{ evento.titulo }}</p>
-    <div class="flex flex-col space-y-2">
-      <ModificarEvento :evento="evento" @modificarEvento="emitir('modificarEvento', $event)" />
-      <EliminarEvento :evento="evento" @eliminarEvento="emitir('eliminarEvento', $event)" />
-    </div>
-  </li>
+  <Evento v-if="eventos.length > 0" v-for="(evento, indice) in eventos" :key="indice" :evento="evento" />
   <p v-else class="mx-2 text-center">No hay eventos</p>
 </template>

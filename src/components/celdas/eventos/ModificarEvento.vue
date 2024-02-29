@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
 import type { IEvento } from '@/interfaces'
+
+import { reactive, ref } from 'vue'
+
+import { useEventosStore } from '@/stores/eventos'
+import * as apiEventos from '@/api/eventos'
 
 interface Props {
   evento: IEvento
 }
 const props = defineProps<Props>()
+
+const store = useEventosStore()
 
 const estaAbierto = ref(false)
 const alternarMenu = () => {
@@ -17,22 +23,22 @@ const formulario = reactive({
   fecha: props.evento.fecha
 })
 
-const emitir = defineEmits(['modificarEvento'])
-
-const manejarAccion = () => {
-  const eventoModificado: IEvento = {
+const manejarAccion = async () => {
+  const evento: IEvento = {
     id: props.evento.id,
     titulo: formulario.titulo,
     fecha: formulario.fecha
   }
-  emitir('modificarEvento', eventoModificado)
+
+  await apiEventos.modificarEvento(evento)
+  store.actualizarEvento(props.evento.fecha, evento)
+
   alternarMenu()
 }
 </script>
-
 <template>
   <div>
-    <button @click="alternarMenu" class="text-white bg-orange-500 hover:bg-orange-600 p-2 rounded-b font-medium w-full">Modificar</button>
+    <button @click="alternarMenu" class="text-white bg-orange-500 hover:bg-orange-600 p-2 rounded font-medium w-full">Modificar</button>
 
     <div v-if="estaAbierto" class="fixed left-0 top-0 bg-gray-700 bg-opacity-75 w-screen h-screen">
       <div class="bg-white rounded p-8 mx-auto my-20 w-11/12 md:w-1/2">

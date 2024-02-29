@@ -1,3 +1,9 @@
 {
-  "eventos": []
+  "eventos": [
+    {
+      "id": "ac81",
+      "titulo": "Picnic en el parque",
+      "fecha": "2024-05-17"
+    }
+  ]
 }

@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import type { IEvento } from '@/interfaces'
 
+import { useEventosStore } from '@/stores/eventos'
+import * as apiEventos from '@/api/eventos'
+
 interface Props {
   evento: IEvento
 }
 const props = defineProps<Props>()
 
-const emitir = defineEmits(['eliminarEvento'])
+const store = useEventosStore()
 
 const manejarAccion = () => {
-  emitir('eliminarEvento', props.evento.id)
+  apiEventos.eliminarEvento(props.evento.id!)
+  store.eliminarEvento(props.evento.fecha, props.evento.id!)
 }
 </script>
 
