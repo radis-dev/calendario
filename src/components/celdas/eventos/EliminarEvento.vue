@@ -1,13 +1,15 @@
 <script setup lang="ts">
+import type { IEvento } from '@/interfaces'
+
 interface Props {
-  id: string
+  evento: IEvento
 }
 const props = defineProps<Props>()
 
 const emitir = defineEmits(['eliminarEvento'])
 
 const manejarAccion = () => {
-  emitir('eliminarEvento', props.id)
+  emitir('eliminarEvento', props.evento.id)
 }
 </script>
 

@@ -23,3 +23,8 @@ export const agregarEvento = async (evento: IEvento): Promise<IEvento> => {
   const { data } = await instancia.post('/eventos', evento)
   return data
 }
+
+export const modificarEvento = async (evento: IEvento): Promise<IEvento> => {
+  const { data } = await instancia.put(`/eventos/${evento.id}`, evento)
+  return data
+}

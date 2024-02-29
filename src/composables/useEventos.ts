@@ -1,10 +1,10 @@
-import { ref, watch, type Ref } from 'vue'
+import { watch, type Ref, ref } from 'vue'
 import { useQuery } from '@tanstack/vue-query'
 import type { IEvento } from '@/interfaces'
 import * as apiEvento from '@/api/eventos'
 
 export function useEventos(fecha: Ref<string>) {
-  const eventos = ref<IEvento[]>([])
+  let eventos = ref<IEvento[]>([])
 
   const obtenerEventos = async () => {
     return await apiEvento.obtenerEventos(fecha.value)
