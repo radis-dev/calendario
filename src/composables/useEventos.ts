@@ -4,10 +4,28 @@ import type { IEvento } from '@/interfaces'
 import * as apiEvento from '@/api/eventos'
 
 export function useEventos(fecha: Ref<string>) {
-  let eventos = ref<IEvento[]>([])
+  const eventos = ref<IEvento[]>([])
 
   const obtenerEventos = async () => {
     return await apiEvento.obtenerEventos(fecha.value)
+  }
+
+  const agregarEvento = async (evento: IEvento) => {
+    const nuevoEvento = await apiEvento.agregarEvento(evento)
+    eventos.value.push(nuevoEvento)
+  }
+
+  const eliminarEvento = async (id: string) => {
+    await apiEvento.eliminarEvento(id)
+    eventos.value = eventos.value.filter((evento) => evento.id !== id)
+  }
+
+  const modificarEvento = async (evento: IEvento) => {
+    await apiEvento.modificarEvento(evento)
+    const indice = eventos.value.findIndex((e) => e.id === evento.id)
+    if (indice !== -1) {
+      eventos.value.splice(indice, 1, evento)
+    }
   }
 
   const { data, refetch } = useQuery({
@@ -29,5 +47,5 @@ export function useEventos(fecha: Ref<string>) {
 
   watch(fecha, () => refetch())
 
-  return { eventos }
+  return { eventos, agregarEvento, eliminarEvento, modificarEvento }
 }

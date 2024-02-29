@@ -27,6 +27,10 @@ const agregarFecha = (numeroCelda: number, fecha: string, celdas: string[][]) =>
   celdas[fila][columna] = fecha
 }
 
+const formatearFecha = (ano: number, mes: number, dia: number): string => {
+  return new Date(ano, mes - 1, dia + 1).toISOString().split('T')[0]
+}
+
 const calendario = computed(() => {
   const celdas: string[][] = Array.from({ length: props.filas }, () => Array.from<string>({ length: props.columnas }).fill('-'))
 
@@ -35,7 +39,10 @@ const calendario = computed(() => {
   const numeroDiasMes = new Date(props.ano, props.mes, 0).getDate()
 
   const rangoNumeros = [...Array(numeroDiasMes).keys()].map((i) => i + posicionPrimerDia)
-  rangoNumeros.map((numeroCelda, indice) => agregarFecha(numeroCelda, `${props.ano}-${props.mes}-${indice + 1}`, celdas))
+  rangoNumeros.map((numeroCelda, indice) => {
+    const fecha = formatearFecha(props.ano, props.mes, indice + 1)
+    agregarFecha(numeroCelda, fecha, celdas)
+  })
 
   return celdas
 })
