@@ -9,6 +9,12 @@ export const useEventosStore = defineStore('eventos', () => {
     return eventos.value[fecha] || []
   }
 
+  const obtenerEvento = (id: string): IEvento | undefined => {
+    return Object.values(eventos.value)
+      .flatMap((eventos) => eventos)
+      .find((evento) => evento.id === id)
+  }
+
   const agregarEventos = (fecha: string, nuevosEventos: IEvento[]) => {
     if (!eventos.value[fecha]) {
       eventos.value[fecha] = []
@@ -49,5 +55,5 @@ export const useEventosStore = defineStore('eventos', () => {
     }
   }
 
-  return { eventos, agregarEventos, agregarEvento, obtenerEventos, eliminarEventos, eliminarEvento, actualizarEvento }
+  return { eventos, agregarEventos, agregarEvento, obtenerEventos, eliminarEventos, eliminarEvento, actualizarEvento, obtenerEvento }
 })

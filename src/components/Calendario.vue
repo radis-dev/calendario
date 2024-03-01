@@ -16,7 +16,7 @@ const props = withDefaults(defineProps<Props>(), {
   ano: 2002,
   mes: 9,
   semana: () => ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
-  columnas: 7,
+  columnas: 5,
   filas: 6
 })
 
