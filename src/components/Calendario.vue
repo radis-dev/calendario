@@ -16,13 +16,14 @@ const props = withDefaults(defineProps<Props>(), {
   ano: 2002,
   mes: 9,
   semana: () => ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'],
-  columnas: 5,
+  columnas: 7,
   filas: 6
 })
 
 const agregarFecha = (numeroCelda: number, fecha: string, celdas: string[][]) => {
   const fila = Math.floor(numeroCelda / props.columnas)
   const columna = numeroCelda % props.columnas
+  console.log(fila, columna)
 
   celdas[fila][columna] = fecha
 }
@@ -40,7 +41,8 @@ const calendario = computed(() => {
 
   const rangoNumeros = [...Array(numeroDiasMes).keys()].map((i) => i + posicionPrimerDia)
   rangoNumeros.map((numeroCelda, indice) => {
-    const fecha = formatearFecha(props.ano, props.mes, indice + 1)
+    const dia = indice + 1;
+    const fecha = formatearFecha(props.ano, props.mes, dia)
     agregarFecha(numeroCelda, fecha, celdas)
   })
 
