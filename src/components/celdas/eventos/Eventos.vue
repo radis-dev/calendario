@@ -37,11 +37,11 @@ onBeforeUnmount(() => {
   store.eliminarEventos(fecha.value)
 })
 
-const manejarDragStart = (evento: DragEvent, eventoId: string) => {
+const manejarDragStart = (evento: DragEvent, eventoId: string): void => {
   evento.dataTransfer!.setData('text/plain', eventoId)
 }
 
-const manejarDrop = (eventoDrag: DragEvent) => {
+const manejarDrop = (eventoDrag: DragEvent): void => {
   eventoDrag.preventDefault()
   const eventoId = eventoDrag.dataTransfer!.getData('text/plain')
   const evento = store.obtenerEvento(eventoId)

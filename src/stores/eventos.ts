@@ -15,32 +15,32 @@ export const useEventosStore = defineStore('eventos', () => {
       .find((evento) => evento.id === id)
   }
 
-  const agregarEventos = (fecha: string, nuevosEventos: IEvento[]) => {
+  const agregarEventos = (fecha: string, nuevosEventos: IEvento[]): void => {
     if (!eventos.value[fecha]) {
       eventos.value[fecha] = []
     }
     eventos.value[fecha].push(...nuevosEventos)
   }
 
-  const agregarEvento = (evento: IEvento) => {
+  const agregarEvento = (evento: IEvento): void => {
     if (!eventos.value[evento.fecha]) {
       eventos.value[evento.fecha] = []
     }
     eventos.value[evento.fecha].push(evento)
   }
 
-  const eliminarEventos = (fecha: string) => {
+  const eliminarEventos = (fecha: string): void => {
     delete eventos.value[fecha]
   }
 
-  const eliminarEvento = (fecha: string, id: string) => {
+  const eliminarEvento = (fecha: string, id: string): void => {
     if (eventos.value[fecha]) {
       eventos.value[fecha] = eventos.value[fecha].filter((evento) => evento.id !== id)
       eventos.value[fecha].length == 0 && eliminarEventos(fecha)
     }
   }
 
-  const actualizarEvento = (fecha: string, evento: IEvento) => {
+  const actualizarEvento = (fecha: string, evento: IEvento): void => {
     if (fecha != evento.fecha) {
       if (new Date(fecha).getMonth() == new Date(evento.fecha).getMonth()) {
         eliminarEvento(fecha, evento.id!)

@@ -11,7 +11,7 @@ const props = defineProps<Props>()
 
 const store = useEventosStore()
 
-const manejarAccion = () => {
+const manejarAccion = (): void => {
   apiEventos.eliminarEvento(props.evento.id!)
   store.eliminarEvento(props.evento.fecha, props.evento.id!)
 }

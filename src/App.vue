@@ -3,8 +3,8 @@ import { ref } from 'vue'
 
 import Calendario from '@/components/Calendario.vue'
 
-const ano = ref(2024)
-const mes = ref(3)
+const ano = ref<number>(2024)
+const mes = ref<number>(3)
 </script>
 
 <template>

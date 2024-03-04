@@ -13,8 +13,8 @@ const props = defineProps<Props>()
 
 const store = useEventosStore()
 
-const estaAbierto = ref(false)
-const alternarMenu = () => {
+const estaAbierto = ref<boolean>(false)
+const alternarMenu = (): void => {
   estaAbierto.value = !estaAbierto.value
 }
 
@@ -23,7 +23,7 @@ const formulario = reactive({
   fecha: props.evento.fecha
 })
 
-const manejarAccion = async () => {
+const manejarAccion = async (): Promise<void> => {
   const evento: IEvento = {
     id: props.evento.id,
     titulo: formulario.titulo,

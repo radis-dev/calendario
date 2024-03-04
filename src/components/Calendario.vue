@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<Props>(), {
   filas: 6
 })
 
-const agregarFecha = (numeroCelda: number, fecha: string, celdas: string[][]) => {
+const agregarFecha = (numeroCelda: number, fecha: string, celdas: string[][]): void => {
   const fila = Math.floor(numeroCelda / props.columnas)
   const columna = numeroCelda % props.columnas
   console.log(fila, columna)
@@ -41,7 +41,7 @@ const calendario = computed(() => {
 
   const rangoNumeros = [...Array(numeroDiasMes).keys()].map((i) => i + posicionPrimerDia)
   rangoNumeros.map((numeroCelda, indice) => {
-    const dia = indice + 1;
+    const dia = indice + 1
     const fecha = formatearFecha(props.ano, props.mes, dia)
     agregarFecha(numeroCelda, fecha, celdas)
   })

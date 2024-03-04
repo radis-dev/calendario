@@ -11,8 +11,8 @@ const props = defineProps<Props>()
 
 const store = useEventosStore()
 
-const estaAbierto = ref(false)
-const alternarMenu = () => {
+const estaAbierto = ref<boolean>(false)
+const alternarMenu = (): void => {
   estaAbierto.value = !estaAbierto.value
 }
 
@@ -20,7 +20,7 @@ const formulario = reactive({
   titulo: ''
 })
 
-const manejarAccion = async () => {
+const manejarAccion = async (): Promise<void> => {
   const evento = await apiEventos.agregarEvento({
     titulo: formulario.titulo,
     fecha: props.fecha
